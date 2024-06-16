@@ -1,0 +1,46 @@
+﻿@model PruebaTecnica.Models.Usuario
+@{
+    ViewData["Title"] = "Usuarios";
+}
+
+<div class="row justify-content-center align-items-center">
+    <div class="col-sm-6 card">
+
+        <h1>Editar Registro</h1>
+        <h6>Todos los campos son obligatorios</h6>
+        <hr />
+
+        <form asp-controller="Usuario" asp-action="Actualizar" method="post">
+
+            <input type="hidden" asp-for="Identificador" />
+
+            <div class="mb-2">
+                <label for="Usuario1" class="form-label" asp-for="Usuario1">Usuario:</label>
+                <input class="form-control" type="text" placeholder="Usuario" asp-for="Usuario1" required>
+            </div>
+
+            <div class="mb-2">
+                <label for="Pass" class="form-label" asp-for="Pass">Contraseña:</label>
+                <input class="form-control mb-3" type="password" placeholder="Contraseña" asp-for="Pass" required>
+            </div>
+            <br />
+            <div class="mb-2">
+                <button type="submit" class="btn btn-primary btn-sm w-25">Actualizar</button>
+                <a class="btn btn-dark btn-sm" asp-controller="Usuario" asp-action="Index">Volver</a>
+            </div>
+
+            <!-- Mostrar resumen de errores -->
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            @if (ViewData["Mensaje"] != null)
+            {
+                <div class="form-group text-center">
+                    <div class="alert alert-danger" role="alert">
+                        @ViewData["Mensaje"]
+                    </div>
+                </div>
+            }
+
+        </form>
+    </div>
+</div>

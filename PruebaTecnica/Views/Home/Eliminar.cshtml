@@ -1,0 +1,63 @@
+﻿@model PruebaTecnica.Models.Persona
+@{
+    ViewData["Title"] = "Personas";
+}
+
+<div class="row justify-content-center align-items-center">
+    <div class="col-sm-6 card">
+
+        <h1 class="text-danger">Eliminar Registro</h1>
+
+        <h6 class="text-danger">¿Esta seguro de eliminar el registro?</h6>
+        <hr />
+
+        <form asp-controller="Home" asp-action="Eliminar" method="post">
+
+            <input type="hidden" asp-for="Identificador" />
+
+            <div class="mb-2">
+                <label for="Nombres" class="form-label" asp-for="Nombres">Nombres:</label>
+                <input type="text" id="Nombres" name="Nombres" class="form-control" asp-for="Nombres" disabled />
+            </div>
+
+            <div class="mb-2">
+                <label for="Apellidos" class="form-label" asp-for="Apellidos">Apellidos:</label>
+                <input type="text" id="Apellidos" name="Apellidos" class="form-control" asp-for="Apellidos" disabled />
+            </div>
+
+            <div class="mb-2">
+                <label for="NumeroIdentificacion" class="form-label" asp-for="NumeroIdentificacion">Número de Identificación:</label>
+                <input type="text" id="NumeroIdentificacion" name="NumeroIdentificacion" class="form-control" asp-for="NumeroIdentificacion" disabled />
+            </div>
+
+            <div class="mb-2">
+                <label for="Email" class="form-label" asp-for="Email">Email:</label>
+                <input type="email" id="Email" name="Email" class="form-control" asp-for="Email" disabled />
+            </div>
+
+            <div class="mb-2">
+                <label for="TipoIdentificacion" class="form-label" asp-for="TipoIdentificacion">Tipo de Identificación:</label>
+                <select id="TipoIdentificacion" name="TipoIdentificacion" class="form-control" asp-for="TipoIdentificacion" disabled>
+                    <option value="Cedula">Cédula</option>
+                    <option value="Pasaporte">Pasaporte</option>
+                    <option value="DNI">Documento Nacional de Identidad (DNI)</option>
+                </select>
+            </div>
+            <br />
+            <div class="mb-2">
+                <button type="submit" class="btn btn-danger btn-sm w-25">Eliminar</button>
+                <a class="btn btn-dark btn-sm" asp-controller="Home" asp-action="Index">Volver</a>
+            </div>
+
+            @if (ViewData["Mensaje"] != null)
+            {
+                <div class="form-group text-center">
+                    <div class="alert alert-danger" role="alert">
+                        @ViewData["Mensaje"]
+                    </div>
+                </div>
+            }
+
+        </form>
+    </div>
+</div>

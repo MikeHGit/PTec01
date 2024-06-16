@@ -1,0 +1,39 @@
+﻿@model PruebaTecnica.Models.Usuario
+@{
+    ViewData["Title"] = "Usuarios";
+}
+
+<div class="row justify-content-center align-items-center">
+    <div class="col-sm-6 card">
+
+        <h1 class="text-danger">Eliminar Usuario</h1>
+        <h6 class="text-danger">¿Esta seguro de eliminar el usuario?</h6>
+        <hr />
+
+        <form asp-controller="Usuario" asp-action="Eliminar" method="post">
+
+            <input type="hidden" asp-for="Identificador" />
+
+            <div class="mb-2">
+                <label for="Usuario1" class="form-label" asp-for="Usuario1">Usuario:</label>
+                <input type="text" id="Usuario1" name="Usuario1" class="form-control" asp-for="Usuario1" disabled />
+            </div>
+
+            <br />
+            <div class="mb-2">
+                <button type="submit" class="btn btn-danger btn-sm w-25">Eliminar</button>
+                <a class="btn btn-dark btn-sm" asp-controller="Usuario" asp-action="Index">Volver</a>
+            </div>
+
+            @if (ViewData["Mensaje"] != null)
+            {
+                <div class="form-group text-center">
+                    <div class="alert alert-danger" role="alert">
+                        @ViewData["Mensaje"]
+                    </div>
+                </div>
+            }
+
+        </form>
+    </div>
+</div>

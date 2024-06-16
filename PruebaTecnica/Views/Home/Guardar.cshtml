@@ -1,0 +1,77 @@
+﻿@model PruebaTecnica.Models.Persona
+@{
+    ViewData["Title"] = "Personas";
+}
+
+<div class="row justify-content-center align-items-center">
+    <div class="col-sm-6 card">
+
+        @if (Model.Identificador == 0)
+        {
+            <h1>Crear Registro</h1>            
+        }
+        else
+        {
+            <h1>Editar Registro</h1>
+        }
+        <h6>Todos los campos son obligatorios</h6>
+        <hr />
+
+        <form asp-controller="Home" asp-action="Guardar" method="post">
+
+            <input type="hidden" asp-for="Identificador" />
+
+            <div class="mb-2">
+                <label for="Nombres" class="form-label" asp-for="Nombres">Nombres:</label>
+                <input type="text" id="Nombres" name="Nombres" class="form-control" asp-for="Nombres" required />
+            </div>
+
+            <div class="mb-2">
+                <label for="Apellidos" class="form-label" asp-for="Apellidos">Apellidos:</label>
+                <input type="text" id="Apellidos" name="Apellidos" class="form-control" asp-for="Apellidos" required />
+            </div>
+
+            <div class="mb-2">
+                <label for="NumeroIdentificacion" class="form-label" asp-for="NumeroIdentificacion">Número de Identificación:</label>
+                <input type="text" id="NumeroIdentificacion" name="NumeroIdentificacion" class="form-control" asp-for="NumeroIdentificacion" required />
+            </div>
+
+            <div class="mb-2">
+                <label for="Email" class="form-label" asp-for="Email">Email:</label>
+                <input type="email" id="Email" name="Email" class="form-control" asp-for="Email" required />
+            </div>
+
+            <div class="mb-2">
+                <label for="TipoIdentificacion" class="form-label" asp-for="TipoIdentificacion">Tipo de Identificación:</label>
+                <select id="TipoIdentificacion" name="TipoIdentificacion" class="form-select" asp-for="TipoIdentificacion" required>
+                    <option value="Cedula">Cédula</option>
+                    <option value="Pasaporte">Pasaporte</option>
+                    <option value="DNI">Documento Nacional de Identidad (DNI)</option>
+                </select>
+            </div>
+            <br />
+            <div class="mb-2">
+                @if (Model.Identificador == 0)
+                {
+                    <button type="submit" class="btn btn-primary btn-sm w-25">Crear</button>
+                }
+                else
+                {
+                    <button type="submit" class="btn btn-primary btn-sm w-25">Actualizar</button>
+                }
+                <a class="btn btn-dark btn-sm" asp-controller="Home" asp-action="Index">Volver</a>
+            </div>
+            
+
+            @if (ViewData["Mensaje"] != null)
+            {
+                <div class="form-group text-center">
+                    <div class="alert alert-danger" role="alert">
+                        @ViewData["Mensaje"]
+                    </div>
+                </div>
+            }            
+            
+        </form>
+    </div>
+</div>
