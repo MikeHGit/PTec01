@@ -4,6 +4,7 @@ using PruebaTecnica.Models;
 using PruebaTecnica.Resources;
 using PruebaTecnica.Services.Contracts;
 using PruebaTecnica.Services.Implementations;
+using System.Security.Claims;
 
 namespace PruebaTecnica.Controllers
 {
@@ -21,6 +22,19 @@ namespace PruebaTecnica.Controllers
         }
         public IActionResult Index()
         {
+            // Mostrar Usuario en Home.
+            string nombreUsuario = "";
+            ClaimsPrincipal claimUser = HttpContext.User;
+            if (claimUser.Identity.IsAuthenticated)
+            {
+                nombreUsuario = claimUser.Claims.Where(c => c.Type == ClaimTypes.Name)
+                    .Select(c => c.Value)
+                    .SingleOrDefault();
+            }
+            ViewData["userName"] = nombreUsuario;
+
+
+
             // Mostrar tabla de Usuarios
             List<Usuario> lista = _db.Usuarios.ToList();
             return View(lista);

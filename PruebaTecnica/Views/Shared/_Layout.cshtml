@@ -30,11 +30,18 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="CerrarSesion">Cerrar Sesión</a>
                         </li>
                     </ul>
-                    <ul class="navbar-nav">
+                    @*<ul class="navbar-nav">
                         <li class="text-end text-muted">
-                            <h6>Bienvenido <strong>@ViewData["userName"]</strong></h6>
+                            <h6><i class="bi bi-person-circle" style="font-size: 2rem; color: cornflowerblue;"></i><strong>@ViewData["userName"]</strong></h6>
+                        </li>
+                    </ul>*@
+                    <ul class="navbar-nav d-flex justify-content-center align-items-center card">
+                        <li class="d-flex align-items-center">
+                            <i class="bi bi-person-circle" style="font-size: 1.5rem; color: dimgray; margin-right: 8px; margin-left: 8px;"></i>
+                            <strong style="margin-right: 8px; color: gray;">@ViewData["userName"]</strong>
                         </li>
                     </ul>
+
                 </div>
             </div>
         </nav>
